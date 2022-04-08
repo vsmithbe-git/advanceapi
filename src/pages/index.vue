@@ -1,29 +1,34 @@
 <script setup>
-import { ref } from "vue";
-import {useAdvice} from "../composable/useAdvice";
+import {useApi} from "../composable/useAPI";
 
-const { advices, search } = useAdvice();
-
-const searchItem = ref("");
+const {movies, getMovies} = useApi();
 </script>
 
 <template>
-  <div>
-<input 
-  v-model = "searchItem"
-  @change="search(searchItem)"
-  type="text" 
-  placeholder="Search an Advise..." 
-  class="w-full mt-16 rounded-full text-center py-4 text-xl"/>
+ 
+ <div class="mt-16">
+   <ul class="grid grid-cols-3 gap-12">
+     <router-link 
+     
+     class="bg-white p-4 rounded-lg shadow-2xl cursor-pointer hover:scale-105"
+     v-for="movie in movies" 
+     :key="movie._id"
+     :to = "`/movie/${movie._id}`"
+     >
+     <div>
+       <h3 class="text-xl font-semibold tracking-tight">{{movie.name}}</h3>
+       <p>Runtime {{movie.runtimeInMinutes}} minutes</p>
+        <p>Budget In {{movie.budgetInMillions}} millions</p>
+        <p>Box Office Revenue In {{movie.boxOfficeRevenueInMillions}} millions</p>
+        <p>Academy Award Nominations {{movie.academyAwardNominations}}</p>
+        <p>Academy Award Wins {{movie.academyAwardWins}}</p>
+        <p>Rotten Tomatoes Score {{movie.rottenTomatoesScore}}</p>
 
-
-<div class="grid grid-cols-2 gap-4 pt-16" >
-  <div v-for = "(advice, index) in advices" :key="index">
-  <p>
-    {{advice.advice}}
-  </p>
-</div>
     
-    </div>
-  </div>
+     </div>
+     </router-link>
+   </ul>
+ </div>
+
+
 </template>
