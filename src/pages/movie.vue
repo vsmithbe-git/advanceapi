@@ -7,16 +7,12 @@ const route = useRoute();
 
 const {id} = route.params;
 
-const {movie, getMovie, quotes, getQuotes} = useAPI();
+const {movie, getMovie, quotes, getQuotes, getCharacter} = useAPI();
 
 getMovie(id);
 getQuotes(id);
 
-const who = async (id) => {
-    const character = await getCharacter(id);
-    return character;
 
-};
 </script>
 
 <template>
@@ -37,7 +33,7 @@ const who = async (id) => {
         class="px-4 py-6 my-4 italic bg-white"
         v-for="quote in quotes"
         :key="quote._id">
-         {{ quote.dialog }} - <span>{{quote}}</span>
+         {{ quote.dialog }} - <span>{{getCharacter(quote.character)}}</span>
         </p>
    </div>
     
