@@ -29,14 +29,9 @@ export const useAPI = () => {
         quotes.value = response.data.docs;
     };
 
-    const getCharacter = async (id) => {
-        const response = await api.get(`character/${id}`);
-        return response.data.docs[0];
-    };
-
     getMovies();
 
-    return {movies, movie, quotes, getMovies, getMovie, getQuotes, getCharacter,};
+    return {movies, movie, quotes, getMovies, getMovie, getQuotes,};
 };
 
 
