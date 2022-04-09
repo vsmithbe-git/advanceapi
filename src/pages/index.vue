@@ -1,7 +1,8 @@
 <script setup>
-import {useApi} from "../composable/useAPI";
+import { useAPI } from "../composable/useAPI";
 
-const {movies, getMovies} = useApi();
+const {movies, movie, getMovies} = useAPI();
+movie.value = "";
 </script>
 
 <template>
@@ -14,7 +15,7 @@ const {movies, getMovies} = useApi();
      v-for="movie in movies" 
      :key="movie._id"
      :to = "`/movie/${movie._id}`"
-     >
+      >
      <div>
        <h3 class="text-xl font-semibold tracking-tight">{{movie.name}}</h3>
        <p>Runtime {{movie.runtimeInMinutes}} minutes</p>
@@ -23,9 +24,7 @@ const {movies, getMovies} = useApi();
         <p>Academy Award Nominations {{movie.academyAwardNominations}}</p>
         <p>Academy Award Wins {{movie.academyAwardWins}}</p>
         <p>Rotten Tomatoes Score {{movie.rottenTomatoesScore}}</p>
-
-    
-     </div>
+    </div>
      </router-link>
    </ul>
  </div>
