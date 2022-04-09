@@ -34,7 +34,7 @@ const who = async(id) => {
     <div v-else>Loading...</div>
     <div class="mt-8">
     <p
-        class="px-4 py-6 my-4 italic bg-white"
+        class="px-4 py-6 my-4 italic bg-white text-center"
         v-for="quote in quotes"
         :key="quote._id">
          {{ quote.dialog }} 
